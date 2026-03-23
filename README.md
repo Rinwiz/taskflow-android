@@ -27,9 +27,9 @@ Este proyecto me ha servido para practicar la estructura de una app Android, la 
 
 ## Capturas
 
-![Pantalla principal](screenshots/pantalla-listado.jpeg)
+<img src="screenshots/pantalla-listado.jpeg" alt="Pantalla principal" width="300">
 
-![Pantalla de edición](screenshots/pantalla-edicion.jpeg)
+<img src="screenshots/pantalla-edicion.jpeg" alt="Pantalla de edición" width="300">
 
 ## Objetivos de aprendizaje
 
