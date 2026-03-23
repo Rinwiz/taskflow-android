@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/taskListFragment2">
+
+    <!--
+      Destino inicial: la lista de tareas.
+      - Mantengo el título en @null para que la Toolbar quede “limpia”.
+      - tools:layout solo afecta a la previsualización en el editor (no a tiempo de ejecución).
+    -->
+    <fragment
+        android:id="@+id/taskListFragment2"
+        android:name="com.proyecto.taskflow.ui.list.TaskListFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_task_list">
+
+        <!--
+          Acción de navegación: desde la lista voy al editor.
+          - El id describe el flujo de forma legible.
+          - app:destination apunta al destino (editTaskFragment2).
+        -->
+        <action
+            android:id="@+id/action_taskListFragment_to_editTaskFragment"
+            app:destination="@id/editTaskFragment2" />
+    </fragment>
+
+    <!--
+      Editor de tarea (crear/editar).
+      - También sin título para no mostrar texto en la Toolbar.
+    -->
+    <fragment
+        android:id="@+id/editTaskFragment2"
+        android:name="com.proyecto.taskflow.ui.edit.EditTaskFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_edit_task">
+
+        <!--
+          Argumento del editor:
+          - taskId > 0  ⇒ abro en modo edición (cargo esa tarea).
+          - taskId == -1 ⇒ abro en modo creación (campos vacíos).
+          - app:argType="long" me garantiza tipado seguro en el destino.
+        -->
+        <argument
+            android:name="taskId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+
+</navigation>

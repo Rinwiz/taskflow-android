@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--
+      Bloque de filtros
+      Aquí separo la UI en dos filas para que respire en pantallas pequeñas
+      Fila 1, un desplegable de etiquetas con TextInputLayout + MaterialAutoCompleteTextView
+      Fila 2, un grupo de botones conmutables para filtrar por estado
+      La idea es que el usuario vea primero el contexto del filtro y debajo la acción
+    -->
+    <LinearLayout
+        android:id="@+id/llFilters"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!--
+          Desplegable de etiquetas
+          Uso el estilo de menú desplegable de Material para que quede integrado con el tema
+          En el EditText desactivo entrada de texto real e indico una sola línea con puntos suspensivos
+          El adapter y el manejo de selección lo monto en el fragment para no mezclar UI y lógica aquí
+        -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilFilterLabel"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/filter_label_hint"
+            android:labelFor="@id/actvFilterLabel">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/actvFilterLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:hint="@string/filter_label_hint"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Pequeño separador visual para que no choquen el combo y los botones -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+        <!--
+          Botonera de estado
+          El grupo es de selección única, así evito combinaciones raras
+          Marco "Todas" como activa al iniciar para que el usuario vea la lista completa
+        -->
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/tbgState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAll"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_state_all"
+                android:checked="true" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPending"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_state_pending" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDone"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_state_done" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </LinearLayout>
+
+    <!--
+      Lista principal de tareas
+      Le doy todo el alto disponible entre los filtros y el FAB
+      Defino el LayoutManager en XML para dejar claro que es lineal vertical
+      El item real vive en item_task.xml, así separo el diseño de cada fila del contenedor
+    -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTasks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/llFilters"
+        app:layout_constraintBottom_toTopOf="@id/fabAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_task" />
+
+    <!--
+      Estado vacío
+      Lo mantengo oculto y lo muestro desde el fragment cuando no hay resultados
+      Centrado, con padding generoso para que sea legible
+    -->
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_list"
+        android:textAlignment="center"
+        android:padding="24dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/llFilters"
+        app:layout_constraintBottom_toTopOf="@id/fabAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--
+      Botón de acción flotante
+      Es el acceso directo para crear una nueva tarea
+      Colocado en la esquina inferior derecha con margen para no pegarse al borde
+      El contentDescription ayuda a accesibilidad con lectores de pantalla
+    -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:contentDescription="@string/cd_add_task"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

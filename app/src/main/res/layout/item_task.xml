@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="72dp"
+    android:padding="12dp">
+
+    <!--
+      Punto de estado
+      Uso un View pequeño como indicador visual
+      Lo alinearé verticalmente con el título para que sirva de referencia rápida
+      El color real lo decide el adaptador según si la tarea está hecha o vencida
+    -->
+    <View
+        android:id="@+id/vDot"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toTopOf="@+id/tvTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvTitle" />
+
+    <!--
+      Título de la tarea
+      Ocupará todo el ancho disponible a la derecha del punto
+      Subo el tamaño y pongo negrita para priorizarlo en la jerarquía visual
+    -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/vDot"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Tarea de ejemplo" />
+
+    <!--
+      Meta información
+      Aquí muestro fecha y hora de vencimiento u otro dato corto
+      Bajo el título con color de texto secundario para no competir con el principal
+    -->
+    <TextView
+        android:id="@+id/tvMeta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="?android:textColorSecondary"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="07/11/2025 12:00" />
+
+    <!--
+      Notas
+      Solo enseño la primera línea y corto con puntos suspensivos
+      Arranco oculto y lo muestro desde el adaptador si hay notas para esa tarea
+    -->
+    <TextView
+        android:id="@+id/tvNotes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="?android:textColorSecondary"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvMeta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Primera línea de las notas…" />
+</androidx.constraintlayout.widget.ConstraintLayout>

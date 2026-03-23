@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--
+      AppBarLayout + MaterialToolbar:
+      - Uso esta Toolbar como "ActionBar" para que Navigation pueda poner título y flecha "Up".
+      - La altura usa ?attr/actionBarSize para integrarse con el tema Material.
+      - Si quiero ocultar el título (dejar barra vacía), luego lo hago en MainActivity con
+        supportActionBar?.setDisplayShowTitleEnabled(false) o toolbar.title = "".
+    -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingTop="12dp"
+            app:title="@string/app_name" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--
+      NavHostFragment:
+      - Es el "contenedor" de fragments. Muestra el destino que marque el grafo de navegación.
+      - app:navGraph apunta a res/navigation/nav_main.xml (mi mapa de pantallas).
+      - app:defaultNavHost="true" permite que el botón atrás del sistema se enrute al grafo.
+      - app:layout_behavior sincroniza el scroll con el AppBar (para que la lista se deslice "debajo" de la barra).
+    -->
+    <fragment
+        android:id="@+id/nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/nav_main"
+        app:defaultNavHost="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

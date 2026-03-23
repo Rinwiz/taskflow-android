@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      Este archivo declara los "metadatos" de la app:
+      - qué componentes existen (Activities, Services…)
+      - cómo arranca la app (intent-filter MAIN/LAUNCHER)
+      - iconos, nombre visible, tema, copias de seguridad, etc.
+      Es el punto de entrada del sistema Android hacia mi aplicación.
+    -->
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TaskFlow"
+        tools:targetApi="31">
+
+        <!--
+          MainActivity es mi “contenedor” de pantallas (fragments).
+          La marco como exported=true porque tiene un intent-filter de tipo LAUNCHER (puede ser lanzada desde el launcher del sistema).
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+            <!--
+              Este intent-filter convierte a MainActivity en el punto de entrada:
+              - ACTION MAIN: indica que es la actividad principal
+              - CATEGORY LAUNCHER: hace que el icono de la app aparezca en el cajón de aplicaciones
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          Nota de diseño:
+          El resto de pantallas las gestiono como Fragments a través de Navigation,
+          por eso aquí no declaro más Activities. El “quién se muestra” lo decide
+          el NavHostFragment que vive en el layout de la Activity.
+        -->
+    </application>
+
+</manifest>

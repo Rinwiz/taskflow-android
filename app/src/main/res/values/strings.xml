@@ -1,0 +1,48 @@
+<resources>
+    <!--
+      Archivo de textos de la app
+      Centralizo aquí todos los strings para:
+      - facilitar traducciones en el futuro
+      - mantener la UI coherente y sin textos hardcodeados en layouts o código
+      - mejorar accesibilidad con descripciones claras
+    -->
+
+    <!-- Nombre visible de la app -->
+    <string name="app_name">TaskFlow</string>
+
+    <!--
+      Hints de campos del editor
+      Ayudan al usuario a entender qué va en cada casilla
+      Los de fecha y hora son opcionales porque la app puede funcionar sin vencimiento
+    -->
+    <string name="hint_title">Título de la tarea</string>
+    <string name="hint_notes">Notas (opcional)</string>
+    <string name="hint_due_date">Fecha (opcional)</string>
+    <string name="hint_due_time">Hora (opcional)</string>
+    <string name="hint_label">Etiqueta (opcional)</string>
+
+    <!--
+      Contenido accesible
+      Descripciones pensadas para lectores de pantalla
+      Evito repetir “botón” o “campo” porque TalkBack ya lo indica por rol
+    -->
+    <string name="cd_label_dropdown">Etiqueta, desplegable</string>
+
+    <!-- Botones principales del editor -->
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_save">Guardar</string>
+
+    <!--
+      Textos de filtros de la lista
+      Mantengo etiquetas cortas para que quepan bien en móviles pequeños
+    -->
+    <string name="filter_label_hint">Etiqueta</string>
+    <string name="filter_state_all">Todas</string>
+    <string name="filter_state_pending">Pend.</string>
+    <string name="filter_state_done">Hechas</string>
+
+    <!-- Estados y descripciones de acciones en la lista -->
+    <string name="empty_list">Aún no hay tareas aquí</string>
+    <string name="cd_add_task">Añadir tarea</string>
+
+</resources>

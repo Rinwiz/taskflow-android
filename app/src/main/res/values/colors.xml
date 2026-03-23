@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Paleta mínima
+      Mantengo solo negro y blanco porque la app no depende de una gama propia
+      Esto reduce ruido y evita inconsistencias si el tema del sistema cambia
+      Si en el futuro quiero un acento de marca, aquí declaro, por ejemplo, primary y secondary
+    -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
