@@ -1,6 +1,11 @@
 # TaskFlow
 
-TaskFlow es una aplicación Android sencilla para la gestión de tareas, desarrollada como proyecto de aprendizaje dentro del ciclo de Desarrollo de Aplicaciones Multiplataforma (DAM).
+TaskFlow es una aplicación Android de gestión de tareas desarrollada como proyecto de aprendizaje dentro del ciclo de Desarrollo de Aplicaciones Multiplataforma (DAM).
+
+## Descripción
+
+La aplicación permite crear, visualizar y editar tareas, almacenando la información localmente en el dispositivo.  
+Este proyecto me ha servido para practicar la estructura de una app Android, la navegación entre pantallas y la persistencia de datos.
 
 ## Tecnologías utilizadas
 
@@ -20,9 +25,21 @@ TaskFlow es una aplicación Android sencilla para la gestión de tareas, desarro
 - Almacenamiento local de datos
 - Navegación entre pantallas
 
-## Objetivo del proyecto
+## Capturas
 
-Este proyecto fue desarrollado con el objetivo de practicar conceptos fundamentales de desarrollo Android, como la navegación entre pantallas, la persistencia local de datos y la gestión de listas en una aplicación móvil.
+![Pantalla principal](screenshots/pantalla-listado.jpeg)
+
+![Pantalla de edición](screenshots/pantalla-edicion.jpeg)
+
+## Objetivos de aprendizaje
+
+Con este proyecto he trabajado aspectos como:
+
+- desarrollo de interfaces en Android
+- navegación entre pantallas
+- persistencia local con Room
+- gestión de listas con RecyclerView
+- organización básica del código en una aplicación móvil
 
 ## Estado del proyecto
 
